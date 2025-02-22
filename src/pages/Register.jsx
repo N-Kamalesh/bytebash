@@ -15,9 +15,10 @@ function Register() {
     e.preventDefault();
     if (confirmPassword !== password) {
       toast.error("Passwords don't match");
+      return;
     }
     try {
-      await handleRegister({ email, password });
+      await handleRegister({ email, username: name, password });
       navigate("/");
     } catch (err) {
       console.error(err);

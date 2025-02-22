@@ -4,7 +4,6 @@ import api from "./axios";
 export const apiLogin = async (data) => {
   try {
     const response = await api.post(`/auth/signin`, data);
-    console.log(response.data);
     if (!response.data.success) {
       throw Error(response.data.message);
     }
@@ -22,7 +21,10 @@ export const apiLogin = async (data) => {
 
 export const apiRegister = async (data) => {
   try {
-    let response = await api.post(`/auth/signup`, data);
+    const response = await api.post(`/auth/signup`, data);
+    if (!response.data.success) {
+      throw Error(response.data.message);
+    }
     return response.data;
   } catch (err) {
     console.error("API Error:", err); // Debugging
